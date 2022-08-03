@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 		alignItems: 'center',
 		height: window.isMobile ? 'auto' : 85,
 		padding: window.isMobile ? '20px 25px 10px 10px' : '30px 0 20px 32px',
-		margintop: 20,
+		marginTop: 20,
 		marginBottom: 34,
 		'& a': {
 			width: '100%',
