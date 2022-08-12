@@ -32,7 +32,7 @@ API.logs = {
 };
 
 /**
- * Role
+ * Roles
  */
 API.roles = {
 	index: params => API.get('/roles', { params }),
@@ -62,6 +62,17 @@ API.pages = {
 	all: () => API.get('/pages'),
 	get: id => API.get(`/pages/${id}`),
 	update: (data, id) => API.put(`/pages/${id}`, data)
+};
+
+/**
+ * Paragraphs
+ */
+API.paragraphs = {
+	index: params => API.get('/paragraphs', { params }),
+	show: id => API.get(`/paragraphs/${id}`),
+	store: data => API.post('/paragraphs', data),
+	update: (data, id) => API.put(`/paragraphs/${id}`, data),
+	delete: id => API.delete(`/paragraphs/${id}`)
 };
 
 export default API;

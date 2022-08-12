@@ -22,6 +22,8 @@ import Show from 'pages/Pages/Show';
 import NotFound from 'pages/NotFound';
 import EditHome from 'pages/Pages/EditHome';
 import EditLogin from 'pages/Pages/EditLogin';
+import Paragraphs from 'pages/Paragraphs';
+import ParagraphForm from 'pages/Paragraphs/Form';
 
 const ComponentRoutes = [
 	{
@@ -98,6 +100,21 @@ const ComponentRoutes = [
 		component: EditLogin,
 		title: 'Edit Login Page',
 		path: Routes.Pages.EditLogin,
+	},
+	{
+		component: Paragraphs,
+		title: 'Paragraphs',
+		path: Routes.Paragraphs.List,
+	},
+	{
+		component: ParagraphForm,
+		title: 'Dodaj paragrafy',
+		path: Routes.Paragraphs.Create,
+	},
+	{
+		component: ParagraphForm,
+		title: 'Edytować paragrafy',
+		path: Routes.Paragraphs.Edit(),
 	},
 ];
 

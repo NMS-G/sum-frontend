@@ -74,33 +74,74 @@ const Sidebar = props => {
 			href: Routes.Home,
 			icon: <Home />,
 		},
+		// {
+		// 	title: 'Ogólna kwota wydatków',
+		// 	children: [
+		// 		{
+		// 			title: 'Nowa decyzja',
+		// 			href: Routes.AmountExpense.Decision.List,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 		{
+		// 			title: 'Robocze',
+		// 			href: Routes.AmountExpense.Working.List,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 		{
+		// 			title: 'Zaakceptowane',
+		// 			href: Routes.AmountExpense.Accepted,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 	]
+		// },
+		// {
+		// 	title: 'Podział wydatków',
+		// 	children: [
+		// 		{
+		// 			title: 'Nowy wydatek',
+		// 			href: Routes.BreakdownExpense.Expense.List,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 		{
+		// 			title: 'Zestawienia',
+		// 			href: Routes.BreakdownExpense.Listings.List,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 		{
+		// 			title: 'Zaakceptowane',
+		// 			href: Routes.BreakdownExpense.Accepted,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 	]
+		// },
+		// {
+		// 	title: 'podział na gminy i powiaty',
+		// 	children: [
+		// 		{
+		// 			title: 'Nowy podział',
+		// 			href: Routes.CommunesPoviats.Division.List,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 		{
+		// 			title: 'Robocze',
+		// 			href: Routes.CommunesPoviats.Working.List,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 		{
+		// 			title: 'Zaakceptowane',
+		// 			href: Routes.CommunesPoviats.Accepted,
+		// 			icon: <NewsNormalIcon />,
+		// 		},
+		// 	]
+		// },
 		{
-			title: 'Moduły',
+			title: 'Administracja',
 			children: [
 				{
-					title: 'Parametry podsystemu',
-					href: Routes.FinancialPlan.Statements.List,
+					title: 'Paragrafy',
+					href: Routes.Paragraphs.List,
 					icon: <NewsNormalIcon />,
-				},
-				{
-					title: 'Rodzaje świadczenia',
-					href: Routes.FinancialPlan.Summaries.List,
-					icon: <NewsNormalIcon />,
-				},
-			]
-		},
-		{
-			title: 'SŁOWNIKI podsystemu',
-			children: [
-				{
-					title: 'Parametry podsystemu',
-					href: Routes.SubSystem.Parameters.List,
-					icon: <NewsNormalIcon />,
-				},
-				{
-					title: 'Rodzaje świadczenia',
-					href: Routes.SubSystem.Types.List,
-					icon: <NewsNormalIcon />,
+					permission: 'can_manage_users'
 				},
 			]
 		},
