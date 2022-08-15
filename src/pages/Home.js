@@ -66,6 +66,7 @@ const Home = () => {
 					image: '/images/research_tasks.png',
 					alt: 'Ikona symbolizująca moduł “Zadania Badawcze”',
 					link_label: 'uruchom',
+					href: '',
 					// description: data?.page?.content1,
 				},
 				{
@@ -73,6 +74,7 @@ const Home = () => {
 					image: '/images/wib_management.png',
 					alt: 'Ikona symbolizująca moduł “Zarządzanie SUM”',
 					link_label: 'uruchom',
+					href: '',
 					// description: data?.page?.content2,
 				},
 				{
@@ -80,6 +82,7 @@ const Home = () => {
 					image: '/images/intellectual_property_register.png',
 					alt: 'Ikona symbolizująca moduł “Rejestr Własności Intelektualnej“',
 					link_label: 'uruchom',
+					href: '',
 					// description: data?.page?.content3,
 				},
 			]);

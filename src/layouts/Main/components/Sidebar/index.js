@@ -143,6 +143,12 @@ const Sidebar = props => {
 					icon: <NewsNormalIcon />,
 					permission: 'can_manage_users'
 				},
+				{
+					title: 'Jednostkami',
+					href: Routes.UnitsGroups.List,
+					icon: <NewsNormalIcon />,
+					permission: 'can_manage_units'
+				},
 			]
 		},
 		{

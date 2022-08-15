@@ -92,6 +92,16 @@ const Routes = {
 		Create: '/paragraphs/create',
 		Edit: (id = ':id') => `/paragraphs/${id}/edit`,
 	},
+	UnitsGroups: {
+		List: '/units_groups',
+		Create: '/units_groups/create',
+		Edit: (id = ':id') => `/units_groups/${id}/edit`,
+	},
+	Units: {
+		List: (groupId = ':groupId') => `/units_groups/${groupId}/units`,
+		Create: (groupId = ':groupId') => `/units_groups/${groupId}/units/create`,
+		Edit: (groupId = ':groupId', id = ':id') => `/units_groups/${groupId}/units/${id}/edit`,
+	},
 };
 
 export default Routes;

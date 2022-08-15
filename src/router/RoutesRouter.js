@@ -24,6 +24,10 @@ import EditHome from 'pages/Pages/EditHome';
 import EditLogin from 'pages/Pages/EditLogin';
 import Paragraphs from 'pages/Paragraphs';
 import ParagraphForm from 'pages/Paragraphs/Form';
+import UnitsGroups from 'pages/UnitsGroups';
+import UnitsGroupForm from 'pages/UnitsGroups/Form';
+import Units from 'pages/Units';
+import UnitForm from 'pages/Units/Form';
 
 const ComponentRoutes = [
 	{
@@ -115,6 +119,36 @@ const ComponentRoutes = [
 		component: ParagraphForm,
 		title: 'Edytować paragrafy',
 		path: Routes.Paragraphs.Edit(),
+	},
+	{
+		component: UnitsGroups,
+		title: 'UnitsGroups',
+		path: Routes.UnitsGroups.List,
+	},
+	{
+		component: UnitsGroupForm,
+		title: 'Dodaj jednostkami',
+		path: Routes.UnitsGroups.Create,
+	},
+	{
+		component: UnitsGroupForm,
+		title: 'Edytować jednostkami',
+		path: Routes.UnitsGroups.Edit(),
+	},
+	{
+		component: Units,
+		title: 'Units',
+		path: Routes.Units.List(),
+	},
+	{
+		component: UnitForm,
+		title: 'Dodaj jednostkami',
+		path: Routes.Units.Create(),
+	},
+	{
+		component: UnitForm,
+		title: 'Edytować jednostkami',
+		path: Routes.Units.Edit(),
 	},
 ];
 

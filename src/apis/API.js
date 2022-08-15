@@ -75,4 +75,27 @@ API.paragraphs = {
 	delete: id => API.delete(`/paragraphs/${id}`)
 };
 
+/**
+ * UnitsGroups
+ */
+API.unitsGroups = {
+	index: params => API.get('/units_groups', { params }),
+	show: id => API.get(`/units_groups/${id}`),
+	store: data => API.post('/units_groups', data),
+	update: (data, id) => API.put(`/units_groups/${id}`, data),
+	delete: id => API.delete(`/units_groups/${id}`)
+};
+
+/**
+ * Units
+ */
+API.units = {
+	show: (groupId, id) => API.get(`/units_groups/${groupId}/units/${id}`),
+	index: (groupId, params) => API.get(`/units_groups/${groupId}/units`, { params }),
+	store: (groupId, data) => API.post(`/units_groups/${groupId}/units`, data),
+	update: (groupId, data, id) => API.put(`/units_groups/${groupId}/units/${id}`, data),
+	delete: (groupId, id) => API.delete(`/units_groups/${groupId}/units/${id}`),
+	parentUnits: () => API.get('/units/parent')
+};
+
 export default API;

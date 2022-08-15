@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Box, TableCell, TableRow } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
+import moment from 'moment';
 
 import API from 'apis/API';
 import Routes from 'router/Routes';
@@ -14,17 +15,16 @@ import { DeleteIconButton, EditIconButton } from 'components/Buttons/IconButtons
 
 import FilterRow from './FilterRow';
 
-const Paragraphs = () => {
+const UnitsGroups = () => {
 	const breadcrumbs = [
 		{ title: 'Administracja', to: '' },
-		{ title: 'Paragrafy', to: '' },
+		{ title: 'Zarządzanie jednostkami', to: '' },
 	];
 	const columns = [
-		{ title: 'ID', name: 'id', width: 100 },
-		{ title: 'Symbol', name: 'symbol' },
-		{ title: 'Opis', name: 'name' },
-		{ title: 'Wersja', name: 'version' },
-		{ title: 'Obowiązuje od', name: 'date_from' },
+		{ title: 'Symbol grupy', name: 'id', width: 100 },
+		{ title: 'Nazwa grupy', name: 'name' },
+		{ title: 'Data utworzenia', name: 'created_at' },
+		{ title: 'Ilość elementów', name: 'units_count' },
 		{ title: 'AKCJE', name: 'action', width: 100, disableSort: true },
 	];
 
@@ -38,9 +38,9 @@ const Paragraphs = () => {
 		filters: {}
 	});
 
-	useEffect(() => document.title = 'SUM - Paragrafy', []);
+	useEffect(() => document.title = 'SUM - Zarządzanie jednostkami', []);
 
-	useEffect(() => loadFilteredParagraphs(), [params]);
+	useEffect(() => loadFilteredUnitsGroups(), [params]);
 
 	const handleChangeParams = _params => {
 		const picked = _.pick(params, ['column', 'direction', 'page']);
@@ -61,21 +61,21 @@ const Paragraphs = () => {
 		});
 	};
 
-	const loadFilteredParagraphs = () => {
-		API.paragraphs.index(params).then(res => {
-			setData(res.data.data);
-			setTotalPagesCount(res.data.last_page);
+	const loadFilteredUnitsGroups = () => {
+		API.unitsGroups.index(params).then(res => {
+			setData(res.data?.data);
+			setTotalPagesCount(res.data?.last_page);
 		});
 	};
 
 	const handleDelete = id => () => {
-		API.paragraphs.delete(id).then(res => {
+		API.unitsGroups.delete(id).then(res => {
 			if (res.data.code === 200) {
-				loadFilteredParagraphs();
+				loadFilteredUnitsGroups();
 				return toast.success('Success!');
 			}
 
-			toast.error('Error');
+			toast.error('Error!');
 		});
 	};
 
@@ -83,13 +83,16 @@ const Paragraphs = () => {
 		data.map((row, index) => (
 			<TableRow key={index}>
 				<TableCell>{row.id}</TableCell>
-				<TableCell>{row.symbol}</TableCell>
 				<TableCell>{row.name}</TableCell>
-				<TableCell>{row.version}</TableCell>
-				<TableCell>{row.date_from}</TableCell>
+				<TableCell>{moment(row.created_at).format('DD.MM.YYYY H:m')}</TableCell>
+				<TableCell>
+					<Link to={Routes.Units.List(row.id)}>
+						{row.units_count}
+					</Link>
+				</TableCell>
 				<TableCell>
 					<Box display="flex">
-						<Link to={Routes.Paragraphs.Edit(row.id)}>
+						<Link to={Routes.UnitsGroups.Edit(row.id)}>
 							<EditIconButton tooltip="Edytuj" />
 						</Link>
 						<DeleteIconButton onClick={handleDelete(row.id)} tooltip="Usuń" />
@@ -102,11 +105,11 @@ const Paragraphs = () => {
 	return (
 		<>
 			<Header
-				title="Paragrafy"
+				title="Jednostkami"
 				perPageCount={params.limit}
 				onChangeCount={handleChangePerPage}
-				createTitle="Dodaj Paragrafy"
-				createPath={Routes.Paragraphs.Create}
+				createTitle="Dodaj jednostkami"
+				createPath={Routes.UnitsGroups.Create}
 			/>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
 
@@ -124,4 +127,4 @@ const Paragraphs = () => {
 	);
 };
 
-export default Paragraphs;
+export default UnitsGroups;
