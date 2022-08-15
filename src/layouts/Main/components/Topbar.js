@@ -8,7 +8,7 @@ import Routes from 'router/Routes';
 import AuthContext from 'context/AuthContext';
 import Typography from 'components/Main/Typography';
 
-import HelpMenuPng from 'assets/svg/help-menu.svg';
+import HelpMenuPng from 'assets/svg/help_menu.svg';
 import { Link } from 'react-router-dom';
 
 import { BarIcon } from 'assets/svg';
