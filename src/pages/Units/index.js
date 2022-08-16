@@ -61,7 +61,7 @@ const Units = () => {
 		setParams(prev => {
 			if (_.isEqual(prev.filters, filters)) return prev;
 
-			return { ...prev, filters };
+			return { ...prev, filters, page: 1 };
 		});
 	};
 
@@ -118,10 +118,10 @@ const Units = () => {
 	return (
 		<>
 			<Header
-				title="Jednostkami"
+				title="Jednostki"
 				perPageCount={params.limit}
 				onChangeCount={handleChangePerPage}
-				createTitle="Dodaj jednostkami"
+				createTitle="Dodaj jednostkę"
 				createPath={Routes.Units.Create(groupId)}
 			/>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
@@ -129,6 +129,7 @@ const Units = () => {
 			{!data
 				? <Progress status={true} />
 				: <PaginatedTable
+					page={params?.page}
 					columns={columns}
 					totalPagesCount={totalPagesCount}
 					onChangeFilters={handleChangeParams}

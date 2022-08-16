@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useCallback, useContext } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { TableCell, TableRow } from '@material-ui/core';
 import _, { debounce } from 'lodash';
 
 import BaseInput from 'components/Form/BaseInput';
 import Select from 'components/Form/Select';
-
-import UnitsContext from 'context/UnitsContext';
+import API from 'apis/API';
 
 const FilterRow = ({ onChange }) => {
-	const { parentUnits } = useContext(UnitsContext);
+	const [parentUnits, setParentUnits] = useState([]);
 
 	const [filters, setFilters] = useState({
 		symbol: '',
@@ -17,6 +16,12 @@ const FilterRow = ({ onChange }) => {
 	});
 
 	useEffect(() => handleChangeSearch(_.pickBy(filters)), [filters]);
+
+	useEffect(() => {
+		API.units.parentUnits().then(res => {
+			setParentUnits(res.data?.data || []);
+		});
+	}, []);
 
 	const handleChange = e => {
 		const { name, value } = e.target;

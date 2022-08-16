@@ -69,7 +69,7 @@ const Users = () => {
 		setParams(prev => {
 			if (_.isEqual(prev.filters, filters)) return prev;
 
-			return { ...prev, filters };
+			return { ...prev, filters, page: 1 };
 		});
 	};
 
@@ -145,6 +145,7 @@ const Users = () => {
 			{!data
 				? <Progress status={true} />
 				: <PaginatedTable
+					page={params?.page}
 					columns={columns}
 					totalPagesCount={totalPagesCount}
 					onChangeFilters={handleChangeParams}

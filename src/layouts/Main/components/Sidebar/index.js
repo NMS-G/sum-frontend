@@ -138,13 +138,13 @@ const Sidebar = props => {
 			title: 'Administracja',
 			children: [
 				{
-					title: 'Paragrafy',
+					title: 'Paragrafu',
 					href: Routes.Paragraphs.List,
 					icon: <NewsNormalIcon />,
 					permission: 'can_manage_users'
 				},
 				{
-					title: 'Jednostkami',
+					title: 'Jednostki',
 					href: Routes.UnitsGroups.List,
 					icon: <NewsNormalIcon />,
 					permission: 'can_manage_units'

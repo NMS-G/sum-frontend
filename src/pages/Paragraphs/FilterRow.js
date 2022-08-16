@@ -7,7 +7,6 @@ import DateInput from 'components/Form/DateInput';
 
 const FilterRow = ({ onChange }) => {
 	const [filters, setFilters] = useState({
-		id: '',
 		symbol: '',
 		name: '',
 		version: '',
@@ -25,15 +24,6 @@ const FilterRow = ({ onChange }) => {
 
 	return (
 		<TableRow>
-			<TableCell>
-				<BaseInput
-					fullWidth
-					placeholder="Wpisz"
-					name="id"
-					value={filters.id}
-					onChange={handleChange}
-				/>
-			</TableCell>
 			<TableCell>
 				<BaseInput
 					fullWidth

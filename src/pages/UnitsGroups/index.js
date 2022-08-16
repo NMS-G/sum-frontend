@@ -11,7 +11,7 @@ import Header from 'components/Main/Header';
 import Breadcrumbs from 'components/Buttons/Breadcrumbs';
 import Progress from 'components/Main/Progress';
 import PaginatedTable from 'components/PaginatedTable';
-import { DeleteIconButton, EditIconButton } from 'components/Buttons/IconButtons';
+import { DeleteIconButton, EditIconButton, NewsIconButton } from 'components/Buttons/IconButtons';
 
 import FilterRow from './FilterRow';
 
@@ -57,7 +57,7 @@ const UnitsGroups = () => {
 		setParams(prev => {
 			if (_.isEqual(prev.filters, filters)) return prev;
 
-			return { ...prev, filters };
+			return { ...prev, filters, page: 1 };
 		});
 	};
 
@@ -85,13 +85,12 @@ const UnitsGroups = () => {
 				<TableCell>{row.id}</TableCell>
 				<TableCell>{row.name}</TableCell>
 				<TableCell>{moment(row.created_at).format('DD.MM.YYYY H:m')}</TableCell>
-				<TableCell>
-					<Link to={Routes.Units.List(row.id)}>
-						{row.units_count}
-					</Link>
-				</TableCell>
+				<TableCell>{row.units_count}</TableCell>
 				<TableCell>
 					<Box display="flex">
+						<Link to={Routes.Units.List(row.id)}>
+							<NewsIconButton tooltip="Lista jednostek" />
+						</Link>
 						<Link to={Routes.UnitsGroups.Edit(row.id)}>
 							<EditIconButton tooltip="Edytuj" />
 						</Link>
@@ -108,7 +107,7 @@ const UnitsGroups = () => {
 				title="Jednostkami"
 				perPageCount={params.limit}
 				onChangeCount={handleChangePerPage}
-				createTitle="Dodaj jednostkami"
+				createTitle="Dodaj grupę"
 				createPath={Routes.UnitsGroups.Create}
 			/>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
@@ -116,6 +115,7 @@ const UnitsGroups = () => {
 			{!data
 				? <Progress status={true} />
 				: <PaginatedTable
+					page={params?.page}
 					columns={columns}
 					totalPagesCount={totalPagesCount}
 					onChangeFilters={handleChangeParams}

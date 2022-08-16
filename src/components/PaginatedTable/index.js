@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const PaginatedTable = props => {
 	const {
+		page = 1,
 		columns,
 		exportEndpoint,
 		filename,
@@ -49,6 +50,10 @@ const PaginatedTable = props => {
 		onChangeFilters && onChangeFilters(filters);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters]);
+
+	useEffect(() => {
+		setFilters(prev => ({ ...prev, page }));
+	}, [page]);
 
 	const handleChangePage = (e, page) => {
 		setFilters(prev => ({ ...prev, page }));

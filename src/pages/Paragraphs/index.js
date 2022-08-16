@@ -17,10 +17,9 @@ import FilterRow from './FilterRow';
 const Paragraphs = () => {
 	const breadcrumbs = [
 		{ title: 'Administracja', to: '' },
-		{ title: 'Paragrafy', to: '' },
+		{ title: 'Paragrafu', to: '' },
 	];
 	const columns = [
-		{ title: 'ID', name: 'id', width: 100 },
 		{ title: 'Symbol', name: 'symbol' },
 		{ title: 'Opis', name: 'name' },
 		{ title: 'Wersja', name: 'version' },
@@ -38,7 +37,7 @@ const Paragraphs = () => {
 		filters: {}
 	});
 
-	useEffect(() => document.title = 'SUM - Paragrafy', []);
+	useEffect(() => document.title = 'SUM - Paragrafu', []);
 
 	useEffect(() => loadFilteredParagraphs(), [params]);
 
@@ -57,7 +56,7 @@ const Paragraphs = () => {
 		setParams(prev => {
 			if (_.isEqual(prev.filters, filters)) return prev;
 
-			return { ...prev, filters };
+			return { ...prev, filters, page: 1 };
 		});
 	};
 
@@ -82,7 +81,6 @@ const Paragraphs = () => {
 	const renderRows = () => (
 		data.map((row, index) => (
 			<TableRow key={index}>
-				<TableCell>{row.id}</TableCell>
 				<TableCell>{row.symbol}</TableCell>
 				<TableCell>{row.name}</TableCell>
 				<TableCell>{row.version}</TableCell>
@@ -102,10 +100,10 @@ const Paragraphs = () => {
 	return (
 		<>
 			<Header
-				title="Paragrafy"
+				title="Paragrafu"
 				perPageCount={params.limit}
 				onChangeCount={handleChangePerPage}
-				createTitle="Dodaj Paragrafy"
+				createTitle="Dodaj Paragrafu"
 				createPath={Routes.Paragraphs.Create}
 			/>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
@@ -113,6 +111,7 @@ const Paragraphs = () => {
 			{!data
 				? <Progress status={true} />
 				: <PaginatedTable
+					page={params?.page}
 					columns={columns}
 					totalPagesCount={totalPagesCount}
 					onChangeFilters={handleChangeParams}

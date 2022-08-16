@@ -41,8 +41,8 @@ const Form = () => {
 	const classes = useStyles();
 	const [breadcrumbs, setBreadcrumbs] = useState([
 		{ title: 'Administracja', to: '' },
-		{ title: 'Paragrafy', to: Routes.Paragraphs.List },
-		{ title: 'Dodaj paragrafy', to: '' },
+		{ title: 'paragrafu', to: Routes.Paragraphs.List },
+		{ title: 'Dodaj paragrafu', to: '' },
 	]);
 
 	const [data, setData] = useState({
@@ -61,11 +61,11 @@ const Form = () => {
 		date_from: new Validator(Required),
 	};
 
-	useEffect(() => document.title = `SUM - ${id ? 'Edycja' : 'Dodawanie'} paragrafy`, []);
+	useEffect(() => document.title = `SUM - ${id ? 'Edycja' : 'Dodawanie'} paragrafu`, []);
 
 	useEffect(() => {
-
 		if (!id) return;
+
 		API.paragraphs.show(id).then(res => {
 			const paragraph = res.data?.paragraph;
 
@@ -84,6 +84,7 @@ const Form = () => {
 
 	const handleSave = () => {
 		let _errors = validate(data, Validators);
+		console.log(_errors);
 		setErrors(_errors);
 		if (_errors) {
 			return toast.error('Nie wszystkie pola spełniają wymagania. Popraw błędy i spróbuj ponownie.');
@@ -92,7 +93,7 @@ const Form = () => {
 		setSaving(true);
 		(id ? API.paragraphs.update : API.paragraphs.store)(data, id).then(() => {
 			setSaving(false);
-			toast.success('Paragrafy została zapisana!');
+			toast.success('Paragrafu została zapisana!');
 			history.push(Routes.Paragraphs.List);
 		});
 	};
@@ -102,12 +103,12 @@ const Form = () => {
 	return (
 		<>
 			<Box className={classes.content}>
-				<Header title={`${id ? 'Edytować' : 'Dodaj'} paragrafy`} />
+				<Header title={`${id ? 'Edytować' : 'Dodaj'} paragrafu`} />
 				<Breadcrumbs breadcrumbs={breadcrumbs} />
 
 				<Box className={classes.section}>
 					<FormInput
-						title="Symbol paragrafy"
+						title="Symbol paragrafu"
 						name="symbol"
 						value={data.symbol}
 						onChange={handleChange}
@@ -115,7 +116,7 @@ const Form = () => {
 						inputProps={{ 'aria-required': true }}
 					/>
 					<FormInput
-						title="Opis paragrafy"
+						title="Opis paragrafu"
 						name="name"
 						value={data.name}
 						onChange={handleChange}
@@ -124,7 +125,7 @@ const Form = () => {
 					/>
 					<FormInput
 						type="number"
-						title="Wersja paragrafy"
+						title="Wersja paragrafu"
 						name="version"
 						value={data.version}
 						onChange={handleChange}
@@ -133,16 +134,16 @@ const Form = () => {
 					/>
 					<DateInput
 						fullWidth
-						title="Obowiązuje od paragrafy"
+						title="Obowiązuje od"
 						name="date_from"
-						error={errors?.version}
+						error={errors?.date_from}
 						value={data.date_from || null}
 						onChange={handleChange}
 						inputProps={{ 'aria-required': true }}
 					/>
 					<Select
 						fullWidth
-						title="Odnosi się do paragrafy"
+						title="Główna agregacja"
 						options={refersTo}
 						displayEmpty
 						emptyLabel="Wybierz"

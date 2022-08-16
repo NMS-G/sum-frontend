@@ -34,8 +34,8 @@ const Form = () => {
 	const classes = useStyles();
 	const [breadcrumbs, setBreadcrumbs] = useState([
 		{ title: 'Administracja', to: '' },
-		{ title: 'Zarządzanie jednostkami', to: Routes.UnitsGroups.List },
-		{ title: 'Dodaj jednostkami', to: '' },
+		{ title: 'Zarządzanie jednostki', to: Routes.UnitsGroups.List },
+		{ title: 'Dodaj jednostki', to: '' },
 	]);
 
 	const [data, setData] = useState({
@@ -47,7 +47,7 @@ const Form = () => {
 		name: new Validator(Required),
 	};
 
-	useEffect(() => document.title = `SUM - ${id ? 'Edycja' : 'Dodawanie'} jednostkami`, []);
+	useEffect(() => document.title = `SUM - ${id ? 'Edycja' : 'Dodawanie'} jednostki`, []);
 
 	useEffect(() => {
 		if (!id) return;
@@ -88,12 +88,12 @@ const Form = () => {
 	return (
 		<>
 			<Box className={classes.content}>
-				<Header title={`${id ? 'Edytować' : 'Dodaj'} jednostkami`} />
+				<Header title={`${id ? 'Edytować' : 'Dodaj'} jednostki`} />
 				<Breadcrumbs breadcrumbs={breadcrumbs} />
 
 				<Box className={classes.section}>
 					<FormInput
-						title="Opis paragrafy"
+						title="Nazwa grupy"
 						name="name"
 						value={data.name}
 						onChange={handleChange}

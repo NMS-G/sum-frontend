@@ -127,12 +127,12 @@ const ComponentRoutes = [
 	},
 	{
 		component: UnitsGroupForm,
-		title: 'Dodaj jednostkami',
+		title: 'Dodaj jednostki',
 		path: Routes.UnitsGroups.Create,
 	},
 	{
 		component: UnitsGroupForm,
-		title: 'Edytować jednostkami',
+		title: 'Edytować jednostki',
 		path: Routes.UnitsGroups.Edit(),
 	},
 	{
@@ -142,12 +142,12 @@ const ComponentRoutes = [
 	},
 	{
 		component: UnitForm,
-		title: 'Dodaj jednostkami',
+		title: 'Dodaj jednostki',
 		path: Routes.Units.Create(),
 	},
 	{
 		component: UnitForm,
-		title: 'Edytować jednostkami',
+		title: 'Edytować jednostki',
 		path: Routes.Units.Edit(),
 	},
 ];

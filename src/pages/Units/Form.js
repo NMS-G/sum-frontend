@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles, Box } from '@material-ui/core';
 import { toast } from 'react-toastify';
@@ -12,7 +12,6 @@ import FormInput from 'components/Form/FormInput';
 import Select from 'components/Form/Select';
 
 import ControlButtonGroup from 'components/Buttons/ControlButtonGroup';
-import UnitsContext from 'context/UnitsContext';
 
 const useStyles = makeStyles(theme => ({
 	content: {
@@ -31,16 +30,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Form = () => {
-	const { parentUnits } = useContext(UnitsContext);
-
+	const [parentUnits, setParentUnits] = useState([]);
 	const { groupId, id } = useParams();
 	const history = useHistory();
 	const classes = useStyles();
 	const [breadcrumbs, setBreadcrumbs] = useState([
 		{ title: 'Administracja', to: '' },
-		{ title: 'Zarządzanie jednostkami', to: Routes.UnitsGroups.List },
+		{ title: 'Zarządzanie jednostki', to: Routes.UnitsGroups.List },
 		{ title: '', to: Routes.Units.List(groupId) },
-		{ title: 'Dodaj jednostkami', to: '' },
+		{ title: 'Dodaj jednostki', to: '' },
 	]);
 
 	const [data, setData] = useState({
@@ -55,7 +53,7 @@ const Form = () => {
 		name: new Validator(Required),
 	};
 
-	useEffect(() => document.title = `SUM - ${id ? 'Edycja' : 'Dodawanie'} jednostkami`, []);
+	useEffect(() => document.title = `SUM - ${id ? 'Edycja' : 'Dodawanie'} jednostki`, []);
 
 	useEffect(() => {
 		if (!id) return;
@@ -106,15 +104,21 @@ const Form = () => {
 		});
 	}, [groupId]);
 
+	useEffect(() => {
+		API.units.parentUnits().then(res => {
+			setParentUnits(res.data?.data || []);
+		});
+	}, []);
+
 	return (
 		<>
 			<Box className={classes.content}>
-				<Header title={`${id ? 'Edytować' : 'Dodaj'} jednostkami`} />
+				<Header title={`${id ? 'Edytować' : 'Dodaj'} jednostki`} />
 				<Breadcrumbs breadcrumbs={breadcrumbs} />
 
 				<Box className={classes.section}>
 					<FormInput
-						title="Opis symbol"
+						title="Symbol jednostki"
 						name="symbol"
 						value={data.symbol}
 						onChange={handleChange}
@@ -123,7 +127,7 @@ const Form = () => {
 					/>
 
 					<FormInput
-						title="Opis nazwa"
+						title="Nazwa jednostki"
 						name="name"
 						value={data.name}
 						onChange={handleChange}

@@ -5,7 +5,6 @@ import API from 'apis/API';
 import Routes from 'router/Routes';
 import RoutesRouter from 'router/RoutesRouter';
 import Storage from 'utils/Storage';
-import { UnitsContextProvider } from './UnitsContext';
 
 const AuthContext = React.createContext(null);
 const authPaths = ['/login', '/register', '/forgot_password', '/reset_password', '/privacy-policy', '/regulations', '/accessibility-declaration', '/information-clause'];
@@ -94,11 +93,9 @@ export const AuthContextProvider = () => {
 
 	return (
 		<AuthContext.Provider value={{ logIn, logOut, user, gFooterClosed, setGFooterClosed }}>
-			<UnitsContextProvider>
-				{!loading &&
-					<RoutesRouter />
-				}
-			</UnitsContextProvider>
+			{!loading &&
+				<RoutesRouter />
+			}
 		</AuthContext.Provider>
 	);
 };
